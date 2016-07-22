@@ -65,11 +65,17 @@
 #define uncnf (char *) "uncnf"
 
 #define DEVADDR (char *) "D43EBB86"
+#define DEVADDR2 (char *) "B43EBB86"
 #define DEVEUI (char *) "A4D894B00B1E5096"
+#define DEVEUI2 (char *) "D4B894B00B1E5096"
 #define APPEUI (char *) "B12498D9428361AE"
+#define APPEUI2 (char *) "D13498D9428361AE"
 #define APPKEY (char *) "921846A329B4C13D3041281942183627"
+#define APPKEY2 (char *) "921D46A329B4C13D3041281942183627"
 #define NWKSKEY (char *) "2B76D5DDA85A891ECCAFB3ABCAD2F254"
+#define NWKSKEY2 (char *) "0B76D5DDA85A891ECCAFB3ABCAD2F254"
 #define APPSKEY (char *) "E536195F254E138C03D05FFE9CBF7A39"
+#define APPSKEY2 (char *) "E616195F254E138C03D05FFE9CBF7A39"
 
 typedef enum _LORA_COMMAND_RESPONSE {
 	LORA_RESPONSE_OK,
@@ -106,6 +112,7 @@ class LoRa {
 			LORA_COMMAND_RESPONSE reset(char parameter[]);
 			LORA_COMMAND_RESPONSE tx(char parameter[], char value[]);
 			LORA_COMMAND_RESPONSE tx(char parameter[], char value[], char value2[]);
+			LORA_COMMAND_RESPONSE rx(char parameter[], char value[]);
 			LORA_COMMAND_RESPONSE join(char parameter[]);
 			LORA_COMMAND_RESPONSE save(void);
 			LORA_COMMAND_RESPONSE forceENABLE(void);

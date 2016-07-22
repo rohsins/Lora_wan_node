@@ -188,6 +188,12 @@ LORA_COMMAND_RESPONSE LoRa::mac::tx(char parameter[], char value[], char value2[
 	return LORA_RESPONSE_OK;
 }
 
+LORA_COMMAND_RESPONSE LoRa::mac::rx(char parameter[], char value[]) {
+	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac tx", parameter, value));
+	osDelay(100);
+	return LORA_RESPONSE_OK;
+}
+
 LORA_COMMAND_RESPONSE LoRa::mac::join(char parameter[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac join", parameter));
 	osDelay(100);

@@ -15,7 +15,7 @@
         <TargetCommonOption>
           <Device>EFM32GG980F1024</Device>
           <Vendor>Silicon Labs</Vendor>
-          <PackID>Keil.EFM32GGxxx_DFP.2.2.0</PackID>
+          <PackID>Keil.EFM32GGxxx_DFP.2.3.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x20000) IROM(0x00000000,0x100000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -480,44 +480,44 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32G CMSIS">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG CMSIS">
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="emlib" Csub="CMU" Cvendor="Keil" Cversion="4.2.1" condition="emlib EMU">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="emlib" Csub="EMU" Cvendor="Keil" Cversion="4.2.1" condition="emlib CMU SYSTEM">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="emlib" Csub="Framework" Cvendor="Keil" Cversion="4.2.1" condition="EFM32G">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+      <component Cclass="Device" Cgroup="emlib" Csub="Framework" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG">
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="emlib" Csub="GPIO" Cvendor="Keil" Cversion="4.2.1" condition="emlib Framework">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="emlib" Csub="SYSTEM" Cvendor="Keil" Cversion="4.2.1" condition="emlib Framework">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="emlib" Csub="USART" Cvendor="Keil" Cversion="4.2.1" condition="emlib CMU">
-        <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
@@ -532,39 +532,41 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="RTE_Driver\Config\RTE_Device.h" version="2.00">
-        <instance index="0" removed="1">RTE\Device\EFM32GG980F1024\RTE_Device.h</instance>
+      <file attr="config" category="header" name="RTE_Driver\Config\RTE_Device.h" version="2.0.1">
+        <instance index="0">RTE\Device\EFM32GG980F1024\RTE_Device.h</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG CMSIS"/>
         <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="source" condition="Compiler ARMCC" name="Device\EFM32G\Source\ARM\startup_efm32g.s" version="4.2.1">
-        <instance index="0">RTE\Device\EFM32GG980F1024\startup_efm32g.s</instance>
+        <instance index="0" removed="1">RTE\Device\EFM32GG980F1024\startup_efm32g.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32G CMSIS"/>
         <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="Compiler ARMCC" name="Device\EFM32GG\Source\ARM\startup_efm32gg.s" version="4.2.1">
+        <instance index="0">RTE\Device\EFM32GG980F1024\startup_efm32gg.s</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG CMSIS"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
-      </file>
-      <file attr="config" category="source" condition="Compiler ARMCC" name="Device\EFM32GG\Source\ARM\startup_efm32gg.s" version="4.0.0">
-        <instance index="0" removed="1">RTE\Device\EFM32GG980F1024\startup_efm32gg.s</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG CMSIS"/>
-        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
-        <targetInfos/>
       </file>
       <file attr="config" category="source" name="Device\EFM32G\Source\system_efm32g.c" version="4.2.1">
-        <instance index="0">RTE\Device\EFM32GG980F1024\system_efm32g.c</instance>
+        <instance index="0" removed="1">RTE\Device\EFM32GG980F1024\system_efm32g.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32G CMSIS"/>
         <package name="EFM32Gxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="1.2.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" name="Device\EFM32GG\Source\system_efm32gg.c" version="4.2.1">
+        <instance index="0">RTE\Device\EFM32GG980F1024\system_efm32gg.c</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG CMSIS"/>
+        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
-      </file>
-      <file attr="config" category="source" name="Device\EFM32GG\Source\system_efm32gg.c" version="4.0.0">
-        <instance index="0" removed="1">RTE\Device\EFM32GG980F1024\system_efm32gg.c</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="4.2.1" condition="EFM32GG CMSIS"/>
-        <package name="EFM32GGxxx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
-        <targetInfos/>
       </file>
     </files>
   </RTE>
