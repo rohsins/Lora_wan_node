@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
 D:\Keil\LoRa-WAN-Node\LoRa-WAN-Node.uvprojx
-Project File Date:  07/19/2016
+Project File Date:  07/22/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -32,12 +32,13 @@ Main.cpp(123): warning:  #177-D: variable "incoming" was declared but never refe
   	char incoming[32];
 Main.cpp(204): warning:  #177-D: variable "os_thread_def_LoraReceive" was declared but never referenced
   osThreadDef(LoraReceive, osPriorityNormal, 1, 0);
-Main.cpp: 3 warnings, 0 errors
-#177-D: variable "os_thread_def_RunThread" was declared but never referenced
+Main.cpp(212): warning:  #177-D: variable "os_thread_def_RunThread" was declared but never referenced
   osThreadDef(RunThread, osPriorityNormal, 1, 0);
+Main.cpp: 3 warnings, 0 errors
+compiling LoRa.cpp...
 linking...
 Program Size: Code=14168 RO-data=492 RW-data=96 ZI-data=8824  
-".\Objects\LoRa-WAN-Node.axf" - 0 Error(s), 2 Warning(s).
+".\Objects\LoRa-WAN-Node.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -51,15 +52,15 @@ Package Vendor: ARM
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.EFM32GGxxx_DFP.2.3.0.pack
-                Keil::Device:emlib:Framework:4.2.1
+                Keil::Device:Startup:4.2.1
                 Silicon Labs EFM32 Giant Gecko Series Device Support, Drivers and Examples
-   * Component: Framework Version: 4.2.1
    * Component: Startup Version: 4.2.1
-   * Component: SYSTEM Version: 4.2.1
-   * Component: EMU Version: 4.2.1
+   * Component: Framework Version: 4.2.1
    * Component: GPIO Version: 4.2.1
-   * Component: CMU Version: 4.2.1
+   * Component: SYSTEM Version: 4.2.1
    * Component: USART Version: 4.2.1
+   * Component: EMU Version: 4.2.1
+   * Component: CMU Version: 4.2.1
 
 <h2>Collection of Component include folders:</h2>
   D:\Keil\LoRa-WAN-Node\RTE
@@ -76,54 +77,54 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.0.0
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
       Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
       Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
-
-   * Component: Keil::Device:emlib:Framework:4.2.1
-      Include file:  emlib\inc\em_common.h
-      Include file:  emlib\inc\em_chip.h
-      Include file:  emlib\inc\em_bus.h
-      Include file:  emlib\inc\em_bitband.h
-      Include file:  emlib\inc\em_version.h
-      Source file:   emlib\src\em_assert.c
-      Include file:  emlib\inc\em_assert.h
 
    * Component: Keil::Device:Startup:4.2.1
       Source file:   Device\EFM32GG\Source\ARM\startup_efm32gg.s
-      Source file:   Device\EFM32GG\Source\system_efm32gg.c
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\EFM32GG\Source\system_efm32gg.c
+
+   * Component: Keil::Device:emlib:Framework:4.2.1
+      Include file:  emlib\inc\em_bus.h
+      Include file:  emlib\inc\em_common.h
+      Include file:  emlib\inc\em_chip.h
+      Include file:  emlib\inc\em_assert.h
+      Source file:   emlib\src\em_assert.c
+      Include file:  emlib\inc\em_version.h
+      Include file:  emlib\inc\em_bitband.h
+
+   * Component: Keil::Device:emlib:GPIO:4.2.1
+      Include file:  emlib\inc\em_gpio.h
+      Source file:   emlib\src\em_gpio.c
 
    * Component: Keil::Device:emlib:SYSTEM:4.2.1
       Source file:   emlib\src\em_system.c
       Include file:  emlib\inc\em_system.h
 
+   * Component: Keil::Device:emlib:USART:4.2.1
+      Include file:  emlib\inc\em_usart.h
+      Source file:   emlib\src\em_usart.c
+
    * Component: Keil::Device:emlib:EMU:4.2.1
       Include file:  emlib\inc\em_emu.h
       Source file:   emlib\src\em_emu.c
 
-   * Component: Keil::Device:emlib:GPIO:4.2.1
-      Source file:   emlib\src\em_gpio.c
-      Include file:  emlib\inc\em_gpio.h
-
    * Component: Keil::Device:emlib:CMU:4.2.1
       Include file:  emlib\inc\em_cmu.h
       Source file:   emlib\src\em_cmu.c
-
-   * Component: Keil::Device:emlib:USART:4.2.1
-      Include file:  emlib\inc\em_usart.h
-      Source file:   emlib\src\em_usart.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:08
 </pre>
 </body>
 </html>

@@ -165,8 +165,8 @@ void LoraTransmit(void const *arg) {
 	while (1) {
 //		wlora.mac.rx((char *)"214", (char *)"AC");
 		adcFunc();
-		osDelay(10000);
-		wlora.mac.tx(uncnf, (char *)"218", (char *)iotBuffer);
+		osDelay(12526);
+		wlora.mac.tx(uncnf, (char *)"114", (char *)iotBuffer);
 		
 	}
 }
