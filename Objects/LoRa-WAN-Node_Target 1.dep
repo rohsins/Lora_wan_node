@@ -1,5 +1,5 @@
 Dependencies for Project 'LoRa-WAN-Node', Target 'Target 1': (DO NOT MODIFY !)
-F (.\Main.cpp)(0x57944EA5)(--cpp -c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork --split_sections-I D:\Keil\LoRa-WAN-Node\RTE-I D:\Keil\LoRa-WAN-Node\RTE\Device\EFM32GG980F1024-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\Device\EFM32GG\Include-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc-D__UVISION_VERSION="520" -D_RTE_ -DEFM32GG980F1024 -DEFM32GG980F1024-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\Main.cpp)(0x5798585A)(--cpp -c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork --split_sections-I D:\Keil\LoRa-WAN-Node\RTE-I D:\Keil\LoRa-WAN-Node\RTE\Device\EFM32GG980F1024-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\Device\EFM32GG\Include-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc-D__UVISION_VERSION="520" -D_RTE_ -DEFM32GG980F1024 -DEFM32GG980F1024-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x5735B544)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FE6282)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x56FE6282)
@@ -66,7 +66,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc\em_bus.h)(0x56BAFDE2)
 I (C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc\em_gpio.h)(0x56BAFDE2)
 I (C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc\em_usart.h)(0x56BAFDE2)
 I (RingBuffer.h)(0x575FF340)
-I (LoRa.h)(0x57944EA3)
+I (LoRa.h)(0x57985D28)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE6282)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FE6282)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x56FE6282)
@@ -74,8 +74,8 @@ F (.\main.c)(0x5791D820)()
 F (.\RingBuffer.cpp)(0x575A7FA6)(--cpp -c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork --split_sections-I D:\Keil\LoRa-WAN-Node\RTE-I D:\Keil\LoRa-WAN-Node\RTE\Device\EFM32GG980F1024-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\Device\EFM32GG\Include-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc-D__UVISION_VERSION="520" -D_RTE_ -DEFM32GG980F1024 -DEFM32GG980F1024-o .\objects\ringbuffer.o --omf_browse .\objects\ringbuffer.crf --depend .\objects\ringbuffer.d)
 I (RingBuffer.h)(0x575FF340)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FE6282)
-F (.\LoRa.cpp)(0x57944EA3)(--cpp -c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork --split_sections-I D:\Keil\LoRa-WAN-Node\RTE-I D:\Keil\LoRa-WAN-Node\RTE\Device\EFM32GG980F1024-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\Device\EFM32GG\Include-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc-D__UVISION_VERSION="520" -D_RTE_ -DEFM32GG980F1024 -DEFM32GG980F1024-o .\objects\lora.o --omf_browse .\objects\lora.crf --depend .\objects\lora.d)
-I (LoRa.h)(0x57944EA3)
+F (.\LoRa.cpp)(0x57985D43)(--cpp -c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork --split_sections-I D:\Keil\LoRa-WAN-Node\RTE-I D:\Keil\LoRa-WAN-Node\RTE\Device\EFM32GG980F1024-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\Device\EFM32GG\Include-I C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc-D__UVISION_VERSION="520" -D_RTE_ -DEFM32GG980F1024 -DEFM32GG980F1024-o .\objects\lora.o --omf_browse .\objects\lora.crf --depend .\objects\lora.d)
+I (LoRa.h)(0x57985D28)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FE6282)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE6282)
 I (C:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc\em_usart.h)(0x56BAFDE2)
