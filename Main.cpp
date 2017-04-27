@@ -125,26 +125,26 @@ void LoraTransmit(void const *arg) {
 	wlora.sys.reset();
 	
 	osDelay(1000);
-//	wlora.mac.set(devaddr, DEVADDR);
-//	wlora.mac.set(deveui, DEVEUI);
-//	wlora.mac.set(appeui, APPEUI);
-//	wlora.mac.set(nwkskey, NWKSKEY);
-//	wlora.mac.set(appskey, APPSKEY);
-//	wlora.mac.set(appkey, APPKEY);
+	wlora.mac.set(devaddr, DEVADDR);
+	wlora.mac.set(deveui, DEVEUI);
+	wlora.mac.set(appeui, APPEUI);
+	wlora.mac.set(nwkskey, NWKSKEY);
+	wlora.mac.set(appskey, APPSKEY);
+	wlora.mac.set(appkey, APPKEY);
 	
-	wlora.mac.set(devaddr, DEVADDR2);
-	wlora.mac.set(deveui, DEVEUI2);
-	wlora.mac.set(appeui, APPEUI2);
-	wlora.mac.set(nwkskey, NWKSKEY2);
-	wlora.mac.set(appskey, APPSKEY2);
-	wlora.mac.set(appkey, APPKEY2);
+//	wlora.mac.set(devaddr, DEVADDR2);
+//	wlora.mac.set(deveui, DEVEUI2);
+//	wlora.mac.set(appeui, APPEUI2);
+//	wlora.mac.set(nwkskey, NWKSKEY2);
+//	wlora.mac.set(appskey, APPSKEY2);
+//	wlora.mac.set(appkey, APPKEY2);
 	
 	wlora.mac.set(pwridx, (char *)"1"); // set the tx output power to 14dBm
 	wlora.mac.set(dr, (char *)"5"); //datarate 125kHz
-	wlora.mac.set(adr, off); //disable the adaptive data rate(ADR)
+	wlora.mac.set(adr, on); //disable the adaptive data rate(ADR)
 	wlora.mac.set(bat, (char *)"127"); // battery is set to 50 %
 	wlora.mac.set(retx, (char *)"1"); // the number of retransmission made for a an uplink confirmed packet is set to 1
-	wlora.mac.set(linkchk , (char *)"100"); // the module will attempt a link check process at 100 second intervals
+	wlora.mac.set(linkchk , (char *)"1000"); // the module will attempt a link check process at 1000 second intervals
 	wlora.mac.set(rxdelay1, (char *) "1000"); //set the delay between the transmission and the first Receive window to 1000 ms.
 	wlora.mac.set(ar, on); //enables the automatic reply process inside the module
 	wlora.mac.set(rx2,(char *) "3", (char *) "868500000"); //receive window 2 is configured with sf9/125kHz data rate with a center frequency of 865MHz.
@@ -165,10 +165,24 @@ void LoraTransmit(void const *arg) {
 	while (1) {
 //		wlora.mac.rx((char *)"214", (char *)"AC");
 		adcFunc();
-		osDelay(12526);
-		wlora.mac.tx(uncnf, (char *)"114", (char *)iotBuffer);
-		
+		wlora.mac.tx(uncnf, (char *)"200", (char *)iotBuffer);
+		uartSend(uart232, (char *)iotBuffer);
+		uartSend(uart232, (char *) "\n\n");
+		osDelay(10123);
 	}
+
+	GPIO_PinModeSet(gpioPortA, 0, gpioModeInput, 1);
+	
+//	int counter = 0;
+	
+//	while (1) {
+//		if (!GPIO_PinInGet(gpioPortA, 0)) {
+//			sprintf(iotBuffer,"%x",counter);
+//			wlora.mac.tx(uncnf, (char *)"115", (char *)iotBuffer);
+//			counter++;
+//			osDelay(3000);
+//		}
+//  }
 }
 osThreadDef(LoraTransmit, osPriorityNormal, 1, 0);
 

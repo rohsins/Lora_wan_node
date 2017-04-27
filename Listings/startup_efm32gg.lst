@@ -459,12 +459,12 @@ l\LoRa-WAN-Node\RTE -ID:\Keil\LoRa-WAN-Node\RTE\Device\EFM32GG980F1024 -IC:\Kei
 ARM Macro Assembler    Page 8 
 
 
-l_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMS
-IS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3
-.0\Device\EFM32GG\Include -IC:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib
-\inc --predefine="__RTX SETA 1" --predefine="__UVISION_VERSION SETA 520" --pred
-efine="_RTE_ SETA 1" --predefine="EFM32GG980F1024 SETA 1" --list=.\listings\sta
-rtup_efm32gg.lst RTE\Device\EFM32GG980F1024\startup_efm32gg.s
+l_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0
+.0\CMSIS\RTOS\RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\Device\EF
+M32GG\Include -IC:\Keil_v5\ARM\PACK\Keil\EFM32GGxxx_DFP\2.3.0\emlib\inc --prede
+fine="__RTX SETA 1" --predefine="__UVISION_VERSION SETA 520" --predefine="_RTE_
+ SETA 1" --predefine="EFM32GG980F1024 SETA 1" --list=.\listings\startup_efm32gg
+.lst RTE\Device\EFM32GG980F1024\startup_efm32gg.s
 
 
 
