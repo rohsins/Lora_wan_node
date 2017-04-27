@@ -15,6 +15,7 @@
 
 USART_TypeDef *uart232 = USART0;
 USART_TypeDef *uartLora = UART0;
+USART_TypeDef *usartAcc = USART2;
 
 float adcResult = 404.0;
 char iotBuffer[16];
@@ -29,6 +30,7 @@ void Initialize(void) {
   CMU_ClockEnable(cmuClock_GPIO, true);
   CMU_ClockEnable(cmuClock_USART0, true);
 	CMU_ClockEnable(cmuClock_UART0, true);
+	CMU_ClockEnable(cmuClock_USART2, true);
 	CMU_ClockEnable(cmuClock_ADC0, true);		
 }
 
@@ -90,6 +92,32 @@ void uart0Initialize(void) {
 	USART_Enable(uartLora, uartEnableTypeDef);
 }
 
+void spiInitialize(void) {
+	
+	USART_InitSync_TypeDef usartInitTypeDefAcc = USART_INITSYNC_DEFAULT;
+	
+	usartInitTypeDefAcc.clockMode = usartClockMode0;
+	usartInitTypeDefAcc.msbf = true;
+	
+//	usartInitTypeDefAcc.baudrate = 3000000;
+	
+	USART_Enable_TypeDef usartEnableTypeDef = usartEnable;
+		
+	USART_InitSync(usartAcc, &usartInitTypeDefAcc);
+	
+	/* usartAcc */
+	GPIO_PinModeSet(gpioPortB, 3, gpioModePushPull, 1); /*MOSI*/
+  GPIO_PinModeSet(gpioPortB, 4, gpioModeInput, 0); /*MISO*/
+	GPIO_PinModeSet(gpioPortB, 5, gpioModePushPull, 0); /*CLOCK*/
+  GPIO_PinModeSet(gpioPortB, 6, gpioModePushPull, 1); /*CS*/
+	
+	/* usartAcc */
+	usartAcc->ROUTE |= 1 << 0 | 1 << 1 | 1 << 3 | 1 << 8 | 0 << 9;
+	usartAcc->CTRL |= USART_CTRL_AUTOCS;
+	
+	USART_Enable(usartAcc, usartEnableTypeDef);
+}
+
 void uartSend(USART_TypeDef *tempType, char data[]) {
 	int i = 0;
 	while(data[i]) {
@@ -99,23 +127,30 @@ void uartSend(USART_TypeDef *tempType, char data[]) {
 	}
 }
 
-//void ReceiveThread(void const *arg) {
-//	uint8_t temp;
-//	while (1) {
-//		temp = USART_Rx(uart232);
-//		uartSend(uart232, (char*)(&temp));
-//	}
-//}
-//osThreadDef(ReceiveThread, osPriorityNormal, 1, 0);
+uint8_t spiRead;
 
-void ReceiveThread2(void const *arg) {
+void spi_thread(void const* arg) {
+	
+	while(1) {
+//		spiRead = USART_SpiTransfer(usartAcc, 0x0f);
+		USART_Tx(usartAcc, 0x8A);
+		osDelay(1);
+		USART_Tx(usartAcc, 0xFF);
+		spiRead = USART_Rx(usartAcc);
+		USART_Tx(uart232, spiRead); //for debug
+		osDelay(2900);
+	}
+}
+osThreadDef(spi_thread, osPriorityNormal, 1, 0);
+
+void ReceiveThread(void const *arg) {
 	uint8_t temp;
 	while (1) {
 		temp = USART_Rx(uartLora);
 		uartSend(uart232, (char *)(&temp));
 	}
 }
-osThreadDef(ReceiveThread2, osPriorityNormal, 1, 0);
+osThreadDef(ReceiveThread, osPriorityNormal, 1, 0);
 
 void LoraTransmit(void const *arg) {
 	LoRa wlora;
@@ -233,13 +268,13 @@ int main (void) {
 	osKernelInitialize();
 	Initialize();
 	uart0Initialize();
+	spiInitialize();
 	
 	osDelay(1000);
 	
 	uartSend(uart232, (char *) "\r\nSystem Initialize\r\n");
 	osThreadCreate(osThread(blinky), NULL);
-//	osThreadCreate(osThread(ReceiveThread), NULL);
-	osThreadCreate(osThread(ReceiveThread2), NULL);
+	osThreadCreate(osThread(ReceiveThread), NULL);
 //	osThreadCreate(osThread(RunThread), NULL);
 	
 	osThreadCreate(osThread(LoraTransmit), NULL);
