@@ -19,7 +19,14 @@ USART_TypeDef *usartAcc = USART2;
 
 float adcResult = 404.0;
 char iotBuffer[16];
+char transitory[32];
 uint32_t adcResultwhat = 0;
+int16_t axisZ;
+int16_t axisY;
+int whoami;
+float zGravity;
+float yGravity;
+float xGravity;
 
 void Initialize(void) {
   CMU_OscillatorEnable (cmuOsc_HFXO, true, true);
@@ -47,6 +54,24 @@ void adcFunc(void) {
 	  adcResult = (((adcResult/4095)*(5*3.3)/3)*1000);
 	  adcResultwhat = adcResult;
 	  sprintf(iotBuffer,"%x",adcResultwhat);
+}
+
+uint8_t accRead(uint8_t regRead) {
+	uint8_t temp = 0;
+	USART_Tx(usartAcc, (regRead | 0x80));
+	USART_Tx(usartAcc, 0x00);
+	temp = USART_Rx(usartAcc);
+	osDelay(1);
+	return temp;
+}
+
+uint8_t accWrite(uint8_t regWrite, uint8_t regValue) {
+	uint8_t temp = 0;
+	USART_Tx(usartAcc, regWrite);
+	USART_Tx(usartAcc, regValue);
+	temp = USART_Rx(usartAcc);
+	osDelay(1);
+	return temp;
 }
 
 void blinky(void const* arg) {
@@ -92,6 +117,15 @@ void uart0Initialize(void) {
 	USART_Enable(uartLora, uartEnableTypeDef);
 }
 
+void accConfig(void) {
+	accWrite(0x20, 0x7F); //enable bdu, zen, data rate 400Hz
+	accWrite(0x24, 0x80); //anti-aliasing filter 400Hz
+//	accWrite(0x23, 0x88); //enable dataready interrupt
+	accWrite(0x21, 0x00);
+	accWrite(0x22, 0x00);
+	accWrite(0x23, 0x00);
+}
+
 void spiInitialize(void) {
 	
 	USART_InitSync_TypeDef usartInitTypeDefAcc = USART_INITSYNC_DEFAULT;
@@ -99,7 +133,8 @@ void spiInitialize(void) {
 	usartInitTypeDefAcc.clockMode = usartClockMode0;
 	usartInitTypeDefAcc.msbf = true;
 	
-//	usartInitTypeDefAcc.baudrate = 3000000;
+	usartInitTypeDefAcc.baudrate = 400000;
+	usartInitTypeDefAcc.databits = usartDatabits8;
 	
 	USART_Enable_TypeDef usartEnableTypeDef = usartEnable;
 		
@@ -112,10 +147,12 @@ void spiInitialize(void) {
   GPIO_PinModeSet(gpioPortB, 6, gpioModePushPull, 1); /*CS*/
 	
 	/* usartAcc */
-	usartAcc->ROUTE |= 1 << 0 | 1 << 1 | 1 << 3 | 1 << 8 | 0 << 9;
+	usartAcc->ROUTE |= 1 << 0 | 1 << 1 | 1 << 2 | 1 << 3 | 1 << 8 | 0 << 9;
 	usartAcc->CTRL |= USART_CTRL_AUTOCS;
 	
 	USART_Enable(usartAcc, usartEnableTypeDef);
+	
+	accConfig();
 }
 
 void uartSend(USART_TypeDef *tempType, char data[]) {
@@ -127,15 +164,11 @@ void uartSend(USART_TypeDef *tempType, char data[]) {
 	}
 }
 
-uint8_t spiRead;
-
 void spi_thread(void const* arg) {
-	
+	uint8_t spiRead;
 	while(1) {
-//		spiRead = USART_SpiTransfer(usartAcc, 0x0f);
-		USART_Tx(usartAcc, 0x8A);
-		osDelay(1);
-		USART_Tx(usartAcc, 0xFF);
+		USART_Tx(usartAcc, 0x8F);
+		USART_Tx(usartAcc, 0x00);
 		spiRead = USART_Rx(usartAcc);
 		USART_Tx(uart232, spiRead); //for debug
 		osDelay(2900);
@@ -198,7 +231,6 @@ void LoraTransmit(void const *arg) {
 	wlora.mac.join(abp);
 
 	while (1) {
-//		wlora.mac.rx((char *)"214", (char *)"AC");
 		adcFunc();
 		wlora.mac.tx(uncnf, (char *)"200", (char *)iotBuffer);
 		uartSend(uart232, (char *)iotBuffer);
@@ -207,17 +239,6 @@ void LoraTransmit(void const *arg) {
 	}
 
 	GPIO_PinModeSet(gpioPortA, 0, gpioModeInput, 1);
-	
-//	int counter = 0;
-	
-//	while (1) {
-//		if (!GPIO_PinInGet(gpioPortA, 0)) {
-//			sprintf(iotBuffer,"%x",counter);
-//			wlora.mac.tx(uncnf, (char *)"115", (char *)iotBuffer);
-//			counter++;
-//			osDelay(3000);
-//		}
-//  }
 }
 osThreadDef(LoraTransmit, osPriorityNormal, 1, 0);
 
@@ -253,16 +274,41 @@ void LoraReceive(void const *arg) {
 osThreadDef(LoraReceive, osPriorityNormal, 1, 0);
 
 void RunThread(void const *argument) {	
-//	LoraInitialize();
-//	LoraConfiguration();
-//	while (1) {
-//	}
+//	uint16_t axisZ;
+	int8_t axisZH;
+	uint8_t axisZL;
+	int8_t axisYH;
+	uint8_t axisYL;
+	int8_t axisXH;
+	uint8_t axisXL;
+//	accWrite(0x20, 0x17);
+	whoami = accRead(0x0F);
+	while (1) {	
+		
+		axisYL = accRead(0x2A);
+		axisYH = accRead(0x2B);
+		
+		axisZL = accRead(0x2C);
+		axisZH = accRead(0x2D);
+		
+		axisZ = axisZH  << 8 | axisZL;
+		axisY = axisYH  << 8 | axisYL;
+		
+		zGravity = ((axisZ*2.0)/32768.0);
+		yGravity = ((axisY*2.0)/32768.0);
+		
+		sprintf(transitory,"z-axis data: %d \n",axisZ);
+		uartSend(uart232, transitory);
+		sprintf(transitory,"y-axis data: %d \n\n",axisY);
+		uartSend(uart232, transitory);
+		
+		osDelay(1000);
+	}
 }
 osThreadDef(RunThread, osPriorityNormal, 1, 0);
 
 int main (void) {
 	
-  SystemCoreClockUpdate();
 	SysTick_Config(SystemCoreClock/1000); // 1 milisecond SysTick
 	
 	osKernelInitialize();
@@ -274,10 +320,12 @@ int main (void) {
 	
 	uartSend(uart232, (char *) "\r\nSystem Initialize\r\n");
 	osThreadCreate(osThread(blinky), NULL);
-	osThreadCreate(osThread(ReceiveThread), NULL);
-//	osThreadCreate(osThread(RunThread), NULL);
+//	osThreadCreate(osThread(ReceiveThread), NULL);
+	osDelay(3000);
+	osThreadCreate(osThread(RunThread), NULL);
+//	osThreadCreate(osThread(spi_thread), NULL);
 	
-	osThreadCreate(osThread(LoraTransmit), NULL);
+//	osThreadCreate(osThread(LoraTransmit), NULL);
 //	osThreadCreate(osThread(LoraReceive), NULL);
 	
 	osKernelStart();
