@@ -93,7 +93,7 @@ class LoRa {
 		static char* stringConcatenate(char first[], char second[], char third[], char fourth[], char fifth[],char sixth[]);
 	
 	public:
-		LoRa();
+		//LoRa();
 		void uartLoraInitialize();
 	
 		struct sys {

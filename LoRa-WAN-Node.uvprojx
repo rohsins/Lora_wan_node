@@ -446,6 +446,16 @@
               <FileType>8</FileType>
               <FilePath>.\LoRa.cpp</FilePath>
             </File>
+            <File>
+              <FileName>lis3dsh.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\lis3dsh.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>rn2483.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\rn2483.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

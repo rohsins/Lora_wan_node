@@ -33,13 +33,13 @@ void LoRa::uartLoraInitialize(void) {
 	USART_Enable(uartClassLora, uartEnableTypeDef);
 }
 
-LoRa::LoRa() {
-	GPIO_PinModeSet(gpioPortA, 15, gpioModePushPull, 0);
-	GPIO_PinOutClear(gpioPortA, 15);
-	osDelay(100);
-	GPIO_PinOutSet(gpioPortA, 15);
-	osDelay(800);
-}
+//LoRa::LoRa() {
+//	GPIO_PinModeSet(gpioPortA, 15, gpioModePushPull, 0);
+//	GPIO_PinOutClear(gpioPortA, 15);
+//	osDelay(100);
+//	GPIO_PinOutSet(gpioPortA, 15);
+//	osDelay(800);
+//}
 
 char* LoRa::stringConcatenate(char first[], char second[]) {
 	static char temp[64];
