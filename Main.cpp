@@ -42,8 +42,10 @@ void Initialize(void) {
 }
 
 void adcFunc(void) {
+	//enable battery measure
 	GPIO_PinModeSet(gpioPortE, 1, gpioModePushPull, 1);
 	GPIO_PinOutSet(gpioPortE, 1);
+	
 	ADC0->CTRL = (24 << 16) | (4 << 8);
 	ADC0->IEN = 0;
 	ADC0->CMD = 1 << 0;
@@ -113,7 +115,7 @@ void LoraTransmit(void const *arg) {
 		LoraTransmit((char *)"200", (char *)iotBuffer);
 		uartSend(uart232, (char *)iotBuffer);
 		uartSend(uart232, (char *) "\n\n");
-		osDelay(5000);
+		osDelay(10000);
 	}
 }
 osThreadDef(LoraTransmit, osPriorityNormal, 1, 0);

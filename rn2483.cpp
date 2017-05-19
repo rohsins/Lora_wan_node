@@ -30,7 +30,7 @@ void LoraConfig(void) {
 	
 	wlora.mac.set(pwridx, (char *)"1"); // set the tx output power to 14dBm
 	wlora.mac.set(dr, (char *)"5"); //datarate 125kHz
-	wlora.mac.set(adr, on); //disable the adaptive data rate(ADR)
+	wlora.mac.set(adr, on); //enable the adaptive data rate(ADR)
 	wlora.mac.set(bat, (char *)"127"); // battery is set to 50 %
 	wlora.mac.set(retx, (char *)"1"); // the number of retransmission made for a an uplink confirmed packet is set to 1
 	wlora.mac.set(linkchk , (char *)"1000"); // the module will attempt a link check process at 1000 second intervals
@@ -62,7 +62,7 @@ void LoraConfig(void) {
 
 void LoraTransmit(char* port,char *arg) {
 	LoRa wlora;
-	wlora.mac.tx(uncnf, port, arg);
+	wlora.mac.tx(cnf, port, arg);
 }
 
 //void LoraReceive(void const *arg) {
