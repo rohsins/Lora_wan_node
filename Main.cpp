@@ -8,7 +8,7 @@
 #include "em_cmu.h"
 #include "em_gpio.h"
 #include "em_usart.h"
-#include "RingBuffer.h"
+//#include "RingBuffer.h"
 #include "LoRa.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -26,7 +26,6 @@ char iotBuffer[16];
 char transitory[32];
 uint32_t adcResultwhat = 0;
 int16_t AxisZ;
-
 
 void Initialize(void) {
   CMU_OscillatorEnable (cmuOsc_HFXO, true, true);
@@ -97,7 +96,8 @@ void uartSend(USART_TypeDef *tempType, char data[]) {
 }
 
 void ReceiveThread(void const *arg) {
-	uint8_t temp;
+	char temp;
+	
 	while (1) {
 		temp = USART_Rx(uartLora);
 		uartSend(uart232, (char *)(&temp));
@@ -109,13 +109,15 @@ void LoraTransmit(void const *arg) {
 	LoraConfig();
 	accInitialize();
 	while (1) {
-		adcFunc();
-		AxisZ = accRead();
-		sprintf(iotBuffer,"%04x%04x", AxisZ, adcResultwhat);
-		LoraTransmit((char *)"200", (char *)iotBuffer);
-		uartSend(uart232, (char *)iotBuffer);
-		uartSend(uart232, (char *) "\n\n");
-		osDelay(10000);
+		//if (!GPIO_PinInGet(gpioPortA,0)) {
+			adcFunc();
+			AxisZ = accRead();
+			sprintf(iotBuffer,"%04x%04x", AxisZ, adcResultwhat);
+			LoraTransmit((char *)"201", (char *)iotBuffer);
+			//uartSend(uart232, (char *)iotBuffer);
+			//uartSend(uart232, (char *) "\n\n");
+			osDelay(15000);
+		//}
 	}
 }
 osThreadDef(LoraTransmit, osPriorityNormal, 1, 0);
@@ -127,6 +129,9 @@ int main (void) {
 	osKernelInitialize();
 	Initialize();
 	uart0Initialize();
+	
+	//define gpio input for interrupt
+	GPIO_PinModeSet(gpioPortA, 0, gpioModeInput, 1);
 	
 	uartSend(uart232, (char *) "\r\nSystem Initialize\r\n");
 	osThreadCreate(osThread(blinky), NULL);

@@ -14,19 +14,19 @@ void LoraConfig(void) {
 	wlora.sys.reset();
 	
 	osDelay(1000);
-	wlora.mac.set(devaddr, DEVADDR);
-	wlora.mac.set(deveui, DEVEUI);
-	wlora.mac.set(appeui, APPEUI);
-	wlora.mac.set(nwkskey, NWKSKEY);
-	wlora.mac.set(appskey, APPSKEY);
-	wlora.mac.set(appkey, APPKEY);
+//	wlora.mac.set(devaddr, DEVADDR);
+//	wlora.mac.set(deveui, DEVEUI);
+//	wlora.mac.set(appeui, APPEUI);
+//	wlora.mac.set(nwkskey, NWKSKEY);
+//	wlora.mac.set(appskey, APPSKEY);
+//	wlora.mac.set(appkey, APPKEY);
 	
-//	wlora.mac.set(devaddr, DEVADDR2);
-//	wlora.mac.set(deveui, DEVEUI2);
-//	wlora.mac.set(appeui, APPEUI2);
-//	wlora.mac.set(nwkskey, NWKSKEY2);
-//	wlora.mac.set(appskey, APPSKEY2);
-//	wlora.mac.set(appkey, APPKEY2);
+	wlora.mac.set(devaddr, DEVADDR2);
+	wlora.mac.set(deveui, DEVEUI2);
+	wlora.mac.set(appeui, APPEUI2);
+	wlora.mac.set(nwkskey, NWKSKEY2);
+	wlora.mac.set(appskey, APPSKEY2);
+	wlora.mac.set(appkey, APPKEY2);
 	
 	wlora.mac.set(pwridx, (char *)"1"); // set the tx output power to 14dBm
 	wlora.mac.set(dr, (char *)"5"); //datarate 125kHz
@@ -62,7 +62,7 @@ void LoraConfig(void) {
 
 void LoraTransmit(char* port,char *arg) {
 	LoRa wlora;
-	wlora.mac.tx(cnf, port, arg);
+	wlora.mac.tx(uncnf, port, arg);
 }
 
 //void LoraReceive(void const *arg) {
