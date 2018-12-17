@@ -36,7 +36,7 @@ void LoRa::uartLoraInitialize(void) {
 //LoRa::LoRa() {
 //	GPIO_PinModeSet(gpioPortA, 15, gpioModePushPull, 0);
 //	GPIO_PinOutClear(gpioPortA, 15);
-//	osDelay(100);
+//	osDelay(10);
 //	GPIO_PinOutSet(gpioPortA, 15);
 //	osDelay(800);
 //}
@@ -121,177 +121,177 @@ void LoRa::uartLoraSend(USART_TypeDef *tempType, char data[]) {
 
 LORA_COMMAND_RESPONSE LoRa::sys::pingdig(char pinname[], char pinstate[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys pingdig", pinname, pinstate));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::sys::sleep(char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys get", value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 LORA_COMMAND_RESPONSE LoRa::sys::reset(void) {
 	uartLoraSend(uartClassLora, (char *)"sys reset\r\n" );
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 LORA_COMMAND_RESPONSE LoRa::sys::eraseFW(void) {
 	uartLoraSend(uartClassLora, (char *)"sys eraseFW\r\n");
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 LORA_COMMAND_RESPONSE LoRa::sys::factoryRESET(void) {
 	uartLoraSend(uartClassLora, (char *)"sys factoryRESET\r\n");
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::sys::get(char parameter[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys get", parameter));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::sys::get(char parameter[], char parameter2[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys get", parameter, parameter2));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::sys::set(char parameter[], char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys set", parameter, value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::sys::set(char parameter[], char value[], char value2[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys set", parameter, value, value2));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::reset(char parameter[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac reset", parameter));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::tx(char parameter[], char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac tx", parameter, value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::tx(char parameter[], char value[], char value2[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac tx", parameter, value, value2));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::rx(char parameter[], char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac tx", parameter, value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::join(char parameter[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac join", parameter));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::save(void) {
 	uartLoraSend(uartClassLora, (char *)"mac save\r\n");
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::forceENABLE(void) {
 	uartLoraSend(uartClassLora, (char *)"mac forceENABLE");
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::pause(void) {
 	uartLoraSend(uartClassLora, (char *)"mac pause\r\n");
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::resume(void) {
 	uartLoraSend(uartClassLora, (char *)"mac resume\r\n");
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::get(char parameter[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac get", parameter));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::get(char parameter[], char parameter2[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac get", parameter, parameter2));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::get(char parameter[], char parameter2[], char parameter3[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac get", parameter, parameter2, parameter3));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::set(char parameter[], char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac set", parameter, value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::set(char parameter[], char value[], char value2[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"mac set", parameter, value, value2));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::set(char parameter[], char value[], char value2[], char value3[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys set", parameter, value, value2, value3));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::mac::set(char parameter[], char value[], char value2[], char value3[], char value4[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"sys set", parameter, value, value2, value3, value4));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::radio::rx(char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"radio rx", value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::radio::tx(char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"radio tx", value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::radio::cw(char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"radio get", value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::radio::get(char parameter[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"radio get", parameter));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
 
 LORA_COMMAND_RESPONSE LoRa::radio::set(char parameter[], char value[]) {
 	uartLoraSend(uartClassLora, stringConcatenate((char *)"radio set", parameter, value));
-	osDelay(100);
+	osDelay(10);
 	return LORA_RESPONSE_OK;
 }
